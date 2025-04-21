@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Job Matcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .page {
+            margin-top: 20px;
+        }
+
+        .page h1 {
+            color: #444;
+        }
+
+        table.job {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table.job th, table.job td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        table.job th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table.job tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table.job tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload your Resume</h1>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <form method="POST" action="/submit" enctype="multipart/form-data">
+        <input type="file" name="userfile" accept=".pdf,.doc,.docx" required>
+        <input type="submit" value="Get Job Recommendations">
+    </form>
+
+    {% if tables %}
+    <div class="page">
+        <h1>Suggested Jobs</h1>
+        {% for table in tables %}
+            {{ table|safe }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

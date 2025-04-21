@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); /* Adjust the scale factor as needed */
+    }
+  }
+  
+  /* Apply the animation to the icon */
+  .pulse-icon {
+    animation: pulse 1s infinite; /* Animation lasts 1 second and repeats infinitely */
+  }
